@@ -301,4 +301,94 @@
 	\]
 \end{proof}
 
+\section{}
+\section{}
+\section{}
+\begin{problem}{VI.6.8}
+	Let $A \in M_n(R)$ be a square matrix, and let $A^t$ be its transpose.  
+	Prove that $A$ and $A^t$ have the same characteristic polynomial and the same annihilator ideals.
+\end{problem}
+
+\begin{proof}
+	The characteristic polynomial of $A$ is $P_A(t)=\det(tI-A)$. Since $(tI-A)^t=tI-A^t$ and $\det(B)=\det(B^t)$ for every matrix $B$, we obtain
+	\[
+	P_A(t)=\det(tI-A)=\det\big((tI-A)^t\big)=\det(tI-A^t)=P_{A^t}(t).
+	\]
+	
+	Now let $f(t)=a_0+a_1t+\cdots+a_mt^m \in R[t]$. Since $(A^t)^k=(A^k)^t$ for all $k$, we have
+	\[
+	f(A^t)=a_0I+a_1A^t+\cdots+a_m(A^t)^m
+	=\big(a_0I+a_1A+\cdots+a_mA^m\big)^t
+	=f(A)^t.
+	\]
+	Thus $f(A)=0$ if and only if $f(A^t)=0$, so $A$ and $A^t$ have the same annihilator ideals.
+\end{proof}
+
+\section{}
+\begin{problem}{VI.7.1}
+	Complete the proof of Lemma 7.2.
+\end{problem}
+\begin{proof}
+	Let $F_\alpha, F_\beta$ be $R[t]$-modules and let $\pi^* : F_\alpha \to F_\beta$ be a $R[t]$-module isomorphism. We want to show that there is a corresponding linear transformation $\pi \in \operatorname{End}_R(F)$ such that $\beta = \pi \circ \alpha \circ \pi^{-1}$.
+	On $F_\alpha, F_\beta$ the module is given by $tv=\alpha(v), t \in R[t], v \in F$ etc. Since $\pi$ is $R[t]$-linear, we have $t \pi^*(v)=\pi^*(tv) \iff \beta \circ \pi^*(v)=\pi^* \circ \alpha(v)$ for all $v \in F$. Choosing $\pi := \pi^*\vert_{R}$ yields our result. $\pi$ is invertible since $\pi^*$ is, and $R$-linear since $R^*$ is $R[t]$-linear.
+\end{proof}
+
+\begin{problem}{VI.7.2}
+	Let 
+	\[
+	f(t)=t^n+r_{n-1}t^{n-1}+\cdots+r_0
+	\]
+	be a monic polynomial, and let $C_{f(t)}$ be its companion matrix. Prove that the characteristic polynomial of $C_{f(t)}$ equals $f(t)$; equivalently, show that
+	\[
+	\det\!\begin{pmatrix}
+		t & 0 & 0 & \cdots & 0 & r_0 \\
+		-1 & t & 0 & \cdots & 0 & r_1 \\
+		0 & -1 & t & \cdots & 0 & r_2 \\
+		\vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+		0 & 0 & 0 & \cdots & t & r_{n-2} \\
+		0 & 0 & 0 & \cdots & -1 & t+r_{n-1}
+	\end{pmatrix}
+	= f(t).
+	\]
+\end{problem}
+
+\begin{proof}
+	Let $D_n(t)$ denote the above determinant. We prove by induction on $n$ that
+	\[
+	D_n(t)=t^n+r_{n-1}t^{n-1}+\cdots+r_0.
+	\]
+	
+	For $n=1$, the matrix is $(t+r_0)$, so $D_1(t)=t+r_0$.
+	
+	Assume the statement holds for $n-1$. Expand $D_n(t)$ along the first row. Since all entries except the first and last are zero,
+	\[
+	D_n(t)
+	= t\,D_{n-1}(t)
+	+ (-1)^{1+n} r_0 \det(M),
+	\]
+	where $M$ is obtained by deleting the first row and last column. The matrix $M$ is lower triangular with diagonal entries all $-1$, hence
+	\[
+	\det(M)=(-1)^{n-1}.
+	\]
+	Thus
+	\[
+	(-1)^{1+n}\det(M)=(-1)^{1+n}(-1)^{n-1}=1,
+	\]
+	and therefore
+	\[
+	D_n(t)=t\,D_{n-1}(t)+r_0.
+	\]
+	
+	By the induction hypothesis,
+	\[
+	D_{n-1}(t)=t^{n-1}+r_{n-1}t^{n-2}+\cdots+r_1,
+	\]
+	so
+	\[
+	D_n(t)
+	= t\bigl(t^{n-1}+r_{n-1}t^{n-2}+\cdots+r_1\bigr)+r_0
+	= t^n+r_{n-1}t^{n-1}+\cdots+r_0.
+	\]
+\end{proof}
+
 
